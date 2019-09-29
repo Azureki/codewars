@@ -1,0 +1,10 @@
+python 可以直接用库的。
+#+BEGIN_SRC python
+from ipaddress import IPv4Address
+#+END_SRC
+
+看到一个 Soln 转成字节。原来都 python3 了还能把字节当成字符串。
+#+BEGIN_SRC python
+def int32_to_ip(int32):
+    return '{}.{}.{}.{}'.format(*int32.to_bytes(4, 'big'))
+#+END_SRC
