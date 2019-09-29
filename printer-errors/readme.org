@@ -1,0 +1,7 @@
+#+TITLE: Printer Errors
+
+* Others' solutions
+
+#+BEGIN_SRC rust
+format!("{}/{}", s.chars().filter(|&c| c > 'm').count(), s.len())
+#+END_SRC
