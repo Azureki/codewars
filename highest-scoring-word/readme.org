@@ -1,0 +1,29 @@
+#+TITLE: Highest Scoring Word
+
+* Others' Solutions
+
+#+BEGIN_SRC rust
+fn score_char(c: char) -> u32 {
+    match c {
+        'a' ... 'z' => c as u32 - 'a' as u32 + 1,
+        'A' ... 'Z' => c as u32 - 'A' as u32 + 1,
+        _ => 0,
+    }
+}
+
+fn score(word: &str) -> u32 {
+    word.chars().map(score_char).sum()
+}
+
+fn high(input: &str) -> &str {
+    input.split_whitespace().max_by_key(|w| score(w)).unwrap_or("")
+}
+#+END_SRC
+
+#+BEGIN_SRC rust
+fn high(input: &str) -> &str {
+    input.split_whitespace().max_by_key(|word| -> u32 {
+        word.chars().map(|c| (c as u32) - 96).sum()
+    }).unwrap_or("")
+}
+#+END_SRC
