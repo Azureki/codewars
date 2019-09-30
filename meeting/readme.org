@@ -1,0 +1,33 @@
+#+TITLE: readme
+
+* Others' Solutions
+using crate makes it easier.
+
+use map continuously
+#+BEGIN_SRC rust
+use itertools::Itertools;
+
+fn meeting(s: &str) -> String {
+   s.to_uppercase()
+       .split(';')
+       .map(|i| i.split(':').collect::<Vec<&str>>())
+       .map(|i| format!("({}, {})", i[1], i[0]))
+       .sorted()
+       .collect::<String>();
+}
+#+END_SRC
+
+another soln, using flat_map() and tuples()
+#+BEGIN_SRC rust
+use itertools::Itertools;
+
+pub fn meeting(s: &str) -> String {
+    s.to_uppercase()
+        .split(';')
+        .flat_map(|person_string| person_string.split(':'))
+        .tuples()
+        .map(|(first_name, last_name)| format!("({}, {})", last_name, first_name))
+        .sorted()
+        .collect()
+}
+#+END_SRC
